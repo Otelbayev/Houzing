@@ -12,6 +12,11 @@ export const Container = styled.div`
 
   @media (max-width: 700px) {
     flex-direction: column;
+    position: ${({ $home }) => $home === "true" && "absolute"};
+    bottom: ${({ $home }) => $home === "true" && "30px"};
+    z-index: ${({ $home }) => $home === "true" && "2"};
+    left: ${({ $home }) => $home === "true" && "15px"};
+    right: ${({ $home }) => $home === "true" && "15px"};
     gap: 5px;
     .width {
       width: 50%;
@@ -84,5 +89,8 @@ export const SelectAnt = styled(Select)`
     font-family: "Montserrat" !important;
     display: flex !important;
     align-items: center !important;
+  }
+  @media (max-width: 700px) {
+    height: 35px !important;
   }
 `;

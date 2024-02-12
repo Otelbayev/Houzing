@@ -4,9 +4,9 @@ import Sidebar from "../../components/Sidebar";
 const Contacts = () => {
   return (
     <div>
+      <Sidebar />
       <div className="container">
         <div className="wrapper">
-          <Sidebar />
           <h1>Contacts Page</h1>
         </div>
       </div>

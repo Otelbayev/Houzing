@@ -27,6 +27,7 @@ Content.Center = styled.div`
     left: 0;
     width: 100%;
     height: 100vh;
+    z-index: 99;
     flex-direction: column;
     justify-content: center;
     transition: 0.3s;

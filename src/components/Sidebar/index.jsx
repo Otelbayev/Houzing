@@ -3,7 +3,7 @@ import { Container, Content, Icon, SelectAnt } from "./style";
 import { Input, Button } from "../Generics";
 import { Dropdown } from "antd";
 
-const Sidebar = () => {
+const Sidebar = ({ $home }) => {
   const [open, setOpen] = useState(false);
   const items = [
     {
@@ -48,28 +48,32 @@ const Sidebar = () => {
     },
   ];
   return (
-    <Container>
-      <Input
-        placeholder={"Enter an address, neighborhood, city, or ZIP code"}
-        $icon={<Icon.Houses />}
-      />
-      <Container.Right>
-        <Dropdown
-          menu={{
-            items,
-          }}
-          placement="bottomLeft"
-          open={open}
-        >
-          <Container.Btn onClick={() => setOpen(!open)}>
-            <Icon.Filter /> Advenced
-          </Container.Btn>
-        </Dropdown>
-        <Button className="width">
-          <Icon.Search /> Search
-        </Button>
-      </Container.Right>
-    </Container>
+    <div className="container">
+      <div className="wrapper">
+        <Container $home={$home}>
+          <Input
+            placeholder={"Enter an address, neighborhood, city, or ZIP code"}
+            $icon={<Icon.Houses />}
+          />
+          <Container.Right>
+            <Dropdown
+              menu={{
+                items,
+              }}
+              placement="bottomLeft"
+              open={open}
+            >
+              <Container.Btn onClick={() => setOpen(!open)}>
+                <Icon.Filter /> Advenced
+              </Container.Btn>
+            </Dropdown>
+            <Button className="width">
+              <Icon.Search /> Search
+            </Button>
+          </Container.Right>
+        </Container>
+      </div>
+    </div>
   );
 };
 
