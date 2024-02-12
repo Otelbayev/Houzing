@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
   const navigate = useNavigate();
   return (
-    <Container>
+    <Container id="top">
       <div className="container">
         <div className="wrapper">
           <Content>
@@ -16,11 +16,14 @@ const Header = () => {
               <Logo />
             </Content.Left>
             <Content.Center>
-              {navbar.map(({ id, path, title }) => (
-                <Content.Link key={id} to={path}>
-                  {title}
-                </Content.Link>
-              ))}
+              {navbar.map(
+                ({ id, path, title, hidden }) =>
+                  !hidden && (
+                    <Content.Link key={id} to={path}>
+                      {title}
+                    </Content.Link>
+                  )
+              )}
             </Content.Center>
             <Content.Right>
               <Button onClick={() => navigate("/signin")} type="dark">

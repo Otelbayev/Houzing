@@ -23,4 +23,20 @@ export const navbar = [
     private: false,
     hidden: false,
   },
+  {
+    id: 4,
+    path: "/signin",
+    element: <h1>Signin</h1>,
+    title: "Signin",
+    private: false,
+    hidden: true,
+  },
+  {
+    id: 5,
+    path: "/signup",
+    element: <h1>Signup</h1>,
+    title: "Signup",
+    private: false,
+    hidden: true,
+  },
 ];

@@ -8,6 +8,9 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+html{
+  scroll-behavior: smooth;
+}
 :root {
   --colorPrimary: #0d263b;
   --colorSecondary: #696969;
@@ -74,5 +77,11 @@ body {
 
 .wrapper {
   width: 1180px;
+  @media (max-width:1250px){
+    width:90%;
+  }
+  @media (max-width:700px){
+    width:95%;
+  }
 }
 
