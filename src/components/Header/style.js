@@ -50,14 +50,18 @@ Content.Link = styled(NavLink)`
 `;
 Content.Right = styled.div``;
 
+Content.MenuWrap = styled.div`
+  display: none;
+  width: 60px;
+  @media (max-width: 700px) {
+    display: block;
+  }
+`;
+
 Content.Menu = styled(menu)`
   width: 20px;
   height: 16px;
   cursor: pointer;
-  display: none;
-  @media (max-width: 700px) {
-    display: block;
-  }
 `;
 
 export const Icon = styled(x)`

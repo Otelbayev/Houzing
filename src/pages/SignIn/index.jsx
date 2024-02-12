@@ -44,7 +44,7 @@ export const Signin = () => {
           <Input onChange={onChange} placeholder="email" type="email" />
           <Input onChange={onChange} placeholder="password" type="password" />
           <Button width="%" onClick={onSubmit}>
-            Login
+            Submit
           </Button>
         </Content>
       </div>

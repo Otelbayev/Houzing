@@ -12,16 +12,16 @@ export const Input = forwardRef(
       name,
       width,
       height,
-      icon,
+      $icon,
     },
     ref
   ) => {
     return (
       <Wrapper>
-        <Icon>{icon}</Icon>
+        <Icon>{$icon}</Icon>
         <Container
           ref={ref}
-          icon={icon}
+          $icon={$icon}
           placeholder={placeholder}
           name={name}
           value={value}

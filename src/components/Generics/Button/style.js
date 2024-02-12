@@ -41,7 +41,7 @@ const Container = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 2px;
-
+  font-family: "Montserrat";
   font-size: ${({ fontSize }) => (fontSize ? `${fontSize}px` : "14px")};
   height: ${({ height }) => (height ? `${height}px` : "44px")};
   width: ${getWidth};
@@ -52,6 +52,10 @@ const Container = styled.button`
   ${getType}
   :active {
     opacity: 0.7;
+  }
+  @media (max-width: 700px) {
+    width: ${({ width }) => (width ? `${width}px` : "60px")};
+    height: ${({ height }) => (height ? `${height}px` : "35px")};
   }
 `;
 

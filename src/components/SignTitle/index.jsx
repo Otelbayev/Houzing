@@ -10,7 +10,7 @@ const SignTitle = () => {
         Sing in
       </div>
       <div className="subTitle up" onClick={() => navigate("/signup")}>
-        Sing up
+        Register
       </div>
     </Content>
   );

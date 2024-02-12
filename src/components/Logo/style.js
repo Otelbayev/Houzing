@@ -14,4 +14,13 @@ export const Container = styled.div`
     font-weight: 600;
     font-size: 22px;
   }
+  @media (max-width: 700px) {
+    img {
+      width: 25px;
+      height: 30px;
+    }
+    div {
+      font-size: 16px;
+    }
+  }
 `;

@@ -13,7 +13,9 @@ const Header = () => {
       <div className="container">
         <div className="wrapper">
           <Content>
-            <Content.Menu onClick={() => setMenu(!menu)} />
+            <Content.MenuWrap>
+              <Content.Menu onClick={() => setMenu(!menu)} />
+            </Content.MenuWrap>
             <Content.Left>
               <Logo />
             </Content.Left>
@@ -34,7 +36,7 @@ const Header = () => {
             </Content.Center>
             <Content.Right>
               <Button onClick={() => navigate("/signin")} type="dark">
-                Login
+                Sign in
               </Button>
             </Content.Right>
           </Content>

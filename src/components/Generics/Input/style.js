@@ -36,17 +36,21 @@ const Container = styled.input`
   align-items: center;
   border-radius: 2px;
   min-width: 120px;
-
+  font-family: "Montserrat";
   font-size: ${({ fontSize }) => (fontSize ? `${fontSize}px` : "14px")};
   height: ${({ height }) => (height ? `${height}px` : "44px")};
   width: ${({ width }) => (width ? `${width}px` : "100%")};
   outline: none;
   border: 1px solid #e6e9ec;
-  padding-left: ${({ icon }) => (icon ? "35px" : "20px")};
+  padding-left: ${({ $icon }) => ($icon ? "35px" : "20px")};
   :focus {
     border: 1px solid #0061df;
   }
   /* ${getType} */
+  @media (max-width: 700px) {
+    height: 35px;
+    font-size: 12px;
+  }
 `;
 
 const Wrapper = styled.div`

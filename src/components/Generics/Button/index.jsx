@@ -8,9 +8,11 @@ export const Button = ({
   width,
   height,
   disabled,
+  className,
 }) => {
   return (
     <Container
+      className={className}
       disabled={disabled}
       onClick={onClick}
       type={type}
