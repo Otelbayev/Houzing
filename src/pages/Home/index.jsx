@@ -11,7 +11,7 @@ const Home = () => {
       <Carousel>
         <Sidebar $home={"true"} />
       </Carousel>
-      {/* <Recommended /> */}
+      <Recommended />
       <Why />
       <Banner />
     </div>

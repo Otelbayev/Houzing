@@ -1,11 +1,15 @@
-import { Container, Content, Details, Img, Icons, Divider } from "./style";
+import {
+  Container,
+  Content,
+  Details,
+  Img,
+  Icons,
+  Divider,
+  Wrap,
+} from "./style";
 import noimg from "../../assets/img/noimg.jpeg";
-import { message } from "antd";
-import { useContext } from "react";
-import { PropertiesContext } from "../../context/Properties";
 
 export const HouseCard = ({ data = {}, gap, onClick }) => {
-  const [state] = useContext(PropertiesContext);
   const {
     attachments,
     salePrice,
@@ -16,31 +20,11 @@ export const HouseCard = ({ data = {}, gap, onClick }) => {
     country,
     description,
     category,
-    favorite,
-    id,
   } = data;
 
-  const save = (event) => {
-    event?.stopPropagation();
-    fetch(
-      `http://localhost:8080/api/v1/houses/addFavourite/${id}?favourite=${!favorite}`,
-      {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        if (favorite) res?.success && message.warning("Successfully disliked");
-        else res?.success && message.info("Successfully liked");
-        state.refetch && state.refetch();
-      });
-  };
   return (
-    <div style={{ display: "flex" }} onClick={onClick}>
-      <Container gap={gap}>
+    <Wrap $gap={gap} onClick={onClick}>
+      <Container>
         <Img src={(attachments && attachments[0]?.imgPath) || noimg} />
         <Content>
           <div className="subTitle inline">
@@ -70,18 +54,18 @@ export const HouseCard = ({ data = {}, gap, onClick }) => {
           </Details>
         </Content>
         <Divider />
-        <Content footer>
-          <Details.Item footer>
+        <Content $footer="true">
+          <Details.Item $footer="true">
             <div className="info">${salePrice || 0}/mo</div>
             <div className="subTitle">${price || 0}/mo</div>
           </Details.Item>
-          <Details.Item row>
+          <Details.Item $row="true">
             <Icons.Resize />
-            <Icons.Love onClick={save} favorite={favorite} />
+            <Icons.Love />
           </Details.Item>
         </Content>
       </Container>
-    </div>
+    </Wrap>
   );
 };
 

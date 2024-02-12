@@ -3,6 +3,7 @@ import { Container, Content } from "./style";
 import HouseCard from "../HouseCard";
 import Slider from "react-slick";
 import { useNavigate } from "react-router-dom";
+import { mockData } from "../../mock/mock";
 
 const settings = {
   infinite: true,
@@ -11,19 +12,34 @@ const settings = {
   arrows: true,
   adaptiveHeight: true,
   dots: true,
-
   appendDots: (dots) => <h1> {dots} </h1>,
+  responsive: [
+    {
+      breakpoint: 950,
+      settings: {
+        slidesToShow: 2,
+        arrows: false,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        arrows: false,
+      },
+    },
+  ],
 };
 
 export const Recommended = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(mockData);
   const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`api/v1/houses/list`)
       .then((res) => res.json())
       .then((res) => {
-        setData(res?.data || []);
+        setData(res?.data);
       });
   }, []);
   return (
@@ -37,14 +53,7 @@ export const Recommended = () => {
         </Content>
         <Slider {...settings}>
           {data.map((value, index) => {
-            return (
-              <HouseCard
-                key={index}
-                gap={10}
-                onClick={() => navigate(`/properties/${value.id}`)}
-                data={value}
-              />
-            );
+            return <HouseCard key={index} gap={10} data={value} />;
           })}
         </Slider>
       </div>

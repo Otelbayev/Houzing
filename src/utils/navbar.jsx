@@ -1,7 +1,6 @@
 import React from "react";
 
 const Home = React.lazy(() => import("../pages/Home"));
-const Contacts = React.lazy(() => import("../pages/Contacts"));
 const Properties = React.lazy(() => import("../pages/Properties"));
 const SignIn = React.lazy(() => import("../pages/SignIn"));
 const SignUp = React.lazy(() => import("../pages/SignUp"));
@@ -28,18 +27,6 @@ export const navbar = [
       </React.Suspense>
     ),
     title: "Properties",
-    private: false,
-    hidden: false,
-  },
-  {
-    id: 3,
-    path: "/contacts",
-    element: (
-      <React.Suspense fallback={<React.Fragment>...loading</React.Fragment>}>
-        <Contacts />
-      </React.Suspense>
-    ),
-    title: "Contacts",
     private: false,
     hidden: false,
   },

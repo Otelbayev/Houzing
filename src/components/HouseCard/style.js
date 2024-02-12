@@ -6,34 +6,27 @@ import ruler from "../../assets/icons/ruler.svg?react";
 import love from "../../assets/icons/love.svg?react";
 import resize from "../../assets/icons/resize.svg?react";
 
+const Wrap = styled.div`
+  margin: ${({ $gap }) => $gap && `0 ${$gap}px`};
+  margin-bottom: 20px;
+`;
+
 const Container = styled.div`
   width: 100%;
-  max-width: 380px;
-  min-width: 330px;
-  margin: ${({ gap }) => {
-    return gap && `0 ${gap}px`;
-  }};
-  height: 430px;
   background: white;
   border: 1px solid #e6e9ec;
-  :hover {
-    filter: drop-shadow(0px 20px 38px rgba(0, 0, 0, 0.06))
-      drop-shadow(0px 7px 46px rgba(0, 0, 0, 0.06))
-      drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.06));
-  }
   cursor: pointer;
 `;
 
 const Img = styled.img`
   width: 100%;
-  max-height: 220px;
-  min-height: 200px;
+  height: 200px;
 `;
 
 const Content = styled.div`
   display: flex;
-  flex-direction: ${({ footer }) => (footer ? "row" : "column")};
-  justify-content: ${({ footer }) => footer && "space-between"};
+  flex-direction: ${({ $footer }) => ($footer ? "row" : "column")};
+  justify-content: ${({ $footer }) => $footer && "space-between"};
   padding-top: 24px;
   padding: 16px 20px;
   background: white;
@@ -47,8 +40,8 @@ const Details = styled.div`
 Details.Item = styled.div`
   display: flex;
   flex-direction: column;
-  flex-direction: ${({ row }) => (row ? "row" : "column")};
-  align-items: ${({ footer }) => !footer && "center"};
+  flex-direction: ${({ $row }) => ($row ? "row" : "column")};
+  align-items: ${({ $footer }) => !$footer && "center"};
 `;
 
 const Icons = styled.div``;
@@ -80,4 +73,4 @@ const Divider = styled.div`
   width: 100%;
 `;
 
-export { Container, Img, Content, Details, Icons, Divider };
+export { Container, Img, Content, Details, Icons, Divider, Wrap };
