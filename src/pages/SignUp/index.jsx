@@ -1,36 +1,40 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Content } from "../SignIn/style";
 import { useNavigate } from "react-router-dom";
 import { Button, Input } from "../../components/Generics";
-// import useRequest from "../../hooks/useRequest";
 import { message } from "antd";
 import SignTitle from "../../components/SignTitle";
 
 export const Recommended = () => {
-  // const request = useRequest();
-  const [body, setBody] = useState({});
   const navigate = useNavigate();
 
-  const onChange = ({ target: { value, placeholder } }) => {
-    setBody({
-      ...body,
-      [placeholder]: value,
-    });
-  };
+  const emailRef = useRef();
+  const firstnameRef = useRef();
+  const lastnameRef = useRef();
+  const passwordRef = useRef();
+
   const info = () => {
     message.info("Successfully logged in ");
   };
-
   const onSubmit = async () => {
-    // request({
-    //   url: `/public/auth/register`,
-    //   method: "POST",
-    //   body,
-    //   me: true,
-    // }).then((res) => {
-    //   info();
-    //   navigate("/signin");
-    // });
+    await fetch("/api/public/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: emailRef.current.value,
+        firstname: firstnameRef.current.value,
+        lastname: lastnameRef.current.value,
+        password: passwordRef.current.value,
+        roleIdSet: [0],
+      }),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        info();
+        navigate("/signin");
+      });
   };
 
   return (
@@ -38,10 +42,10 @@ export const Recommended = () => {
       <div className="wrapper">
         <Content>
           <SignTitle />
-          <Input onChange={onChange} placeholder="email" type="email" />
-          <Input onChange={onChange} placeholder="firstname" type="text" />
-          <Input onChange={onChange} placeholder="lastname" type="text" />
-          <Input onChange={onChange} placeholder="password" type="password" />
+          <Input ref={emailRef} placeholder="email" type="email" />
+          <Input ref={firstnameRef} placeholder="firstname" type="text" />
+          <Input ref={lastnameRef} placeholder="lastname" type="text" />
+          <Input ref={passwordRef} placeholder="password" type="password" />
           <Button width="%" onClick={onSubmit}>
             Submit
           </Button>
