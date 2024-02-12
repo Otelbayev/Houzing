@@ -20,6 +20,7 @@ const Wrapper = styled.div`
   @media (max-width: 850px) {
     flex-direction: column;
     gap: 30px;
+    margin-top: 50px;
   }
 `;
 
@@ -28,6 +29,9 @@ const Content = styled.div`
   flex-direction: column;
   width: 100%;
   margin-top: 50px;
+  @media (max-width: 850px) {
+    margin-top: 0;
+  }
 `;
 
 Content.Title = styled.div`
