@@ -4,6 +4,7 @@ const Home = React.lazy(() => import("../pages/Home"));
 const Properties = React.lazy(() => import("../pages/Properties"));
 const SignIn = React.lazy(() => import("../pages/SignIn"));
 const SignUp = React.lazy(() => import("../pages/SignUp"));
+const HouseItem = React.lazy(() => import("../pages/HouseItem"));
 
 export const navbar = [
   {
@@ -29,6 +30,17 @@ export const navbar = [
     title: "Properties",
     private: false,
     hidden: false,
+  },
+  {
+    id: 3,
+    path: "/properties/:id",
+    element: (
+      <React.Suspense fallback={<React.Fragment>...loading</React.Fragment>}>
+        <HouseItem />
+      </React.Suspense>
+    ),
+    private: false,
+    hidden: true,
   },
   {
     id: 4,

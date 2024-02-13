@@ -12,6 +12,9 @@ export const Container = styled.div`
 
   @media (max-width: 700px) {
     flex-direction: column;
+    background: ${({ $home }) => $home === "true" && "#fff"};
+    border-radius: ${({ $home }) => $home === "true" && "1px"};
+    padding: ${({ $home }) => $home === "true" && "20px 15px"};
     position: ${({ $home }) => $home === "true" && "absolute"};
     bottom: ${({ $home }) => $home === "true" && "30px"};
     z-index: ${({ $home }) => $home === "true" && "2"};

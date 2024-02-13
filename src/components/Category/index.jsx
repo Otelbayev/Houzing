@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Container, Content } from "./style";
-import HouseCard from "../HouseCard";
+import CategoryCard from "../CategoryCard";
 import Slider from "react-slick";
 import { useNavigate } from "react-router-dom";
-import { mockData } from "../../mock/mock";
+import { mockCategory } from "../../mock/mock";
 
 const settings = {
   infinite: true,
@@ -31,12 +31,12 @@ const settings = {
   ],
 };
 
-export const Recommended = () => {
-  const [data, setData] = useState(mockData);
+export const Category = () => {
+  const [data, setData] = useState(mockCategory);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`api/v1/houses/list`)
+    fetch("http://localhost:8080/api/v1/categories/list")
       .then((res) => res.json())
       .then((res) => {
         setData(res?.data);
@@ -46,21 +46,14 @@ export const Recommended = () => {
     <Container className="container">
       <div className="wrapper">
         <Content>
-          <h1 className="title">Recommended</h1>
+          <h1 className="title">Category</h1>
           <div className="info">
             Nulla quis curabitur velit volutpat auctor bibendum consectetur sit.
           </div>
         </Content>
         <Slider {...settings}>
-          {data.map((value, index) => {
-            return (
-              <HouseCard
-                key={index}
-                gap={10}
-                onClick={() => navigate(`/properties/${value.id}`)}
-                data={value}
-              />
-            );
+          {data.map((value) => {
+            return <CategoryCard key={value.id} data={value} />;
           })}
         </Slider>
       </div>
@@ -68,4 +61,4 @@ export const Recommended = () => {
   );
 };
 
-export default Recommended;
+export default Category;

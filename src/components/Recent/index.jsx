@@ -31,31 +31,31 @@ const settings = {
   ],
 };
 
-export const Recommended = () => {
+export const Recent = () => {
   const [data, setData] = useState(mockData);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`api/v1/houses/list`)
+    fetch("http://localhost:8080/api/v1/houses/list")
       .then((res) => res.json())
       .then((res) => {
-        setData(res?.data);
+        setData(res?.data || []);
       });
   }, []);
   return (
     <Container className="container">
       <div className="wrapper">
         <Content>
-          <h1 className="title">Recommended</h1>
+          <h1 className="title">Recent Properties for Rent</h1>
           <div className="info">
             Nulla quis curabitur velit volutpat auctor bibendum consectetur sit.
           </div>
         </Content>
         <Slider {...settings}>
-          {data.map((value, index) => {
+          {data.map((value) => {
             return (
               <HouseCard
-                key={index}
+                key={value.id}
                 gap={10}
                 onClick={() => navigate(`/properties/${value.id}`)}
                 data={value}
@@ -68,4 +68,4 @@ export const Recommended = () => {
   );
 };
 
-export default Recommended;
+export default Recent;

@@ -3,9 +3,11 @@ import Sidebar from "../../components/Sidebar";
 import { Container } from "./style";
 import HouseCard from "../../components/HouseCard";
 import { mockData } from "../../mock/mock";
+import { useNavigate } from "react-router-dom";
 
 const Properties = () => {
   const [data, setData] = useState(mockData);
+  const navigate = useNavigate();
   useEffect(() => {
     fetch("api/v1/houses/list")
       .then((res) => res.json())
@@ -22,7 +24,13 @@ const Properties = () => {
           </div>
           <Container>
             {data.length !== 0 &&
-              data.map((value) => <HouseCard key={value.id} data={value} />)}
+              data.map((value) => (
+                <HouseCard
+                  key={value.id}
+                  data={value}
+                  onClick={() => navigate(`${value.id}`)}
+                />
+              ))}
           </Container>
         </div>
       </div>

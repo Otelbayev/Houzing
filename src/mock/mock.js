@@ -522,3 +522,38 @@ export const mockData = [
     },
   },
 ];
+
+export const mockCategory = [
+  {
+    id: 1,
+    createdAt: "2024-02-13T01:08:01.172657Z",
+    updateAt: null,
+    createdBy: null,
+    updateBy: null,
+    name: "House",
+  },
+  {
+    id: 2,
+    createdAt: "2024-02-13T01:08:17.340221Z",
+    updateAt: null,
+    createdBy: null,
+    updateBy: null,
+    name: "Apartment",
+  },
+  {
+    id: 3,
+    createdAt: "2024-02-13T01:08:26.562458Z",
+    updateAt: null,
+    createdBy: null,
+    updateBy: null,
+    name: "Villa",
+  },
+  {
+    id: 4,
+    createdAt: "2024-02-13T01:08:44.029033Z",
+    updateAt: null,
+    createdBy: null,
+    updateBy: null,
+    name: "Office",
+  },
+];
