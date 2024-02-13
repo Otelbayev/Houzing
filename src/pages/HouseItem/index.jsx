@@ -5,7 +5,6 @@ import { Input, Button } from "../../components/Generics";
 import nouser from "../../assets/img/nouser.jpeg";
 import noimg from "../../assets/img/noimg.jpeg";
 import Recent from "../../components/Recent";
-import { Yandex } from "../../components/Generics";
 
 import {
   Blur,
@@ -238,7 +237,6 @@ export const HouseItem = () => {
             <Button width={"%"}>Send request</Button>
           </Container>
         </Wrapper>
-        <Yandex />
         <Recent />
       </div>
     </div>
