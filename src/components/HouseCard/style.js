@@ -8,6 +8,7 @@ import resize from "../../assets/icons/resize.svg?react";
 
 const Wrap = styled.div`
   margin: ${({ $gap }) => $gap && `0 ${$gap}px`};
+  margin-top: 10px;
   margin-bottom: 20px;
 `;
 
@@ -15,12 +16,22 @@ const Container = styled.div`
   width: 100%;
   background: white;
   border: 1px solid #e6e9ec;
+  border-radius: 3px;
   cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.01);
+  }
+  &:active {
+    transform: scale(1);
+  }
 `;
 
 const Img = styled.img`
   width: 100%;
   height: 200px;
+  border-radius: 3px 3px 0 0;
 `;
 
 const Content = styled.div`

@@ -1,11 +1,12 @@
 import React from "react";
-
 const Home = React.lazy(() => import("../pages/Home"));
 const Properties = React.lazy(() => import("../pages/Properties"));
 const SignIn = React.lazy(() => import("../pages/SignIn"));
 const SignUp = React.lazy(() => import("../pages/SignUp"));
 const HouseItem = React.lazy(() => import("../pages/HouseItem"));
-
+const MyProfile = React.lazy(() => import("../pages/My"));
+const AddNewHouse = React.lazy(() => import("../pages/NewHouse"));
+const Favorite = React.lazy(() => import("../pages/Favorite"));
 export const navbar = [
   {
     id: 0,
@@ -60,6 +61,42 @@ export const navbar = [
     element: (
       <React.Suspense fallback={<React.Fragment>...loading</React.Fragment>}>
         <SignUp />
+      </React.Suspense>
+    ),
+    title: "Signup",
+    private: false,
+    hidden: true,
+  },
+  {
+    id: 6,
+    path: "/myprofile",
+    element: (
+      <React.Suspense fallback={<React.Fragment>...loading</React.Fragment>}>
+        <MyProfile />
+      </React.Suspense>
+    ),
+    title: "Signup",
+    private: false,
+    hidden: true,
+  },
+  {
+    id: 7,
+    path: "/myprofile/newhouse",
+    element: (
+      <React.Suspense fallback={<React.Fragment>...loading</React.Fragment>}>
+        <AddNewHouse />
+      </React.Suspense>
+    ),
+    title: "Signup",
+    private: false,
+    hidden: true,
+  },
+  {
+    id: 8,
+    path: "/favorite",
+    element: (
+      <React.Suspense fallback={<React.Fragment>...loading</React.Fragment>}>
+        <Favorite />
       </React.Suspense>
     ),
     title: "Signup",

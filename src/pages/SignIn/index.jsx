@@ -9,7 +9,6 @@ export const Signin = () => {
   const navigate = useNavigate();
   const emailRef = useRef();
   const pwRef = useRef();
-
   const info = () => {
     message.info("Successfully logged in ");
   };
@@ -25,10 +24,15 @@ export const Signin = () => {
         password: pwRef.current.value,
       }),
     })
-      .then((res) => res.json())
       .then((res) => {
+        if (res.ok) {
+          navigate("/myprofile");
+        }
+        return res.json();
+      })
+      .then((res) => {
+        localStorage.setItem("token", res.authenticationToken);
         info();
-        console.log(res);
       });
   };
 
@@ -37,8 +41,18 @@ export const Signin = () => {
       <div className="wrapper">
         <Content>
           <SignTitle />
-          <Input ref={emailRef} placeholder="email" type="email" />
-          <Input ref={pwRef} placeholder="password" type="password" />
+          <Input
+            ref={emailRef}
+            placeholder="email"
+            value="jasurdev1604@gmail.com"
+            type="email"
+          />
+          <Input
+            ref={pwRef}
+            placeholder="password"
+            value="1604"
+            type="password"
+          />
           <Button width="%" onClick={onSubmit}>
             Submit
           </Button>

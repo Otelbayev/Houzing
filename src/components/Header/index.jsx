@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Content, Icon } from "./style";
+import { Container, Content, Icon, Prof } from "./style";
 import { navbar } from "./../../utils/navbar";
 import Logo from "../Logo";
 import { Button } from "../Generics";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
   const [menu, setMenu] = useState(false);
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
   return (
     <Container id="top">
       <div className="container">
@@ -35,9 +36,13 @@ const Header = () => {
               <Icon onClick={() => setMenu(!menu)} />
             </Content.Center>
             <Content.Right>
-              <Button onClick={() => navigate("/signin")} type="dark">
-                Sign in
-              </Button>
+              {token ? (
+                <Prof onClick={() => navigate("/myprofile")} />
+              ) : (
+                <Button onClick={() => navigate("/signin")} type="dark">
+                  Sign in
+                </Button>
+              )}
             </Content.Right>
           </Content>
         </div>

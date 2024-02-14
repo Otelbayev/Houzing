@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import menu from "../../assets/icons/nav.svg?react";
 import x from "../../assets/icons/x.svg?react";
+import prof from "../../assets/icons/user.svg?react";
 
 export const Container = styled.div`
   background-color: var(--colorPrimary);
@@ -75,5 +76,12 @@ export const Icon = styled(x)`
     width: 24px;
     height: 24px;
     cursor: pointer;
+  }
+`;
+
+export const Prof = styled(prof)`
+  cursor: pointer;
+  fill: #fff;
+  svg {
   }
 `;
