@@ -24,14 +24,10 @@ export const Signin = () => {
         password: pwRef.current.value,
       }),
     })
-      .then((res) => {
-        if (res.ok) {
-          navigate("/myprofile");
-        }
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((res) => {
         localStorage.setItem("token", res.authenticationToken);
+        navigate("/myprofile");
         info();
       });
   };
@@ -44,13 +40,13 @@ export const Signin = () => {
           <Input
             ref={emailRef}
             placeholder="email"
-            value="jasurdev1604@gmail.com"
+            defaultValue="jasurdev1604@gmail.com"
             type="email"
           />
           <Input
             ref={pwRef}
             placeholder="password"
-            value="1604"
+            defaultValue="1604"
             type="password"
           />
           <Button width="%" onClick={onSubmit}>
