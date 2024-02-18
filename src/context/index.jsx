@@ -1,5 +1,7 @@
+import UserDataProvider from "./UserDataContext";
+
 const RootContext = ({ children }) => {
-  return <>{children}</>;
+  return <UserDataProvider>{children}</UserDataProvider>;
 };
 
 export default RootContext;

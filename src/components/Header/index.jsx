@@ -4,11 +4,12 @@ import { navbar } from "./../../utils/navbar";
 import Logo from "../Logo";
 import { Button } from "../Generics";
 import { useNavigate } from "react-router-dom";
+import { useUserDataContext } from "../../context/UserDataContext";
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
+  const [userData] = useUserDataContext();
   return (
     <Container id="top">
       <div className="container">
@@ -36,7 +37,7 @@ const Header = () => {
               <Icon onClick={() => setMenu(!menu)} />
             </Content.Center>
             <Content.Right>
-              {token ? (
+              {userData?.authenticationToken ? (
                 <Prof onClick={() => navigate("/myprofile")} />
               ) : (
                 <Button onClick={() => navigate("/signin")} type="dark">

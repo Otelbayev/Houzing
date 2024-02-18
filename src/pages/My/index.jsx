@@ -4,9 +4,12 @@ import { Button } from "../../components/Generics";
 import noimg from "../../assets/img/noimg.jpeg";
 import { message } from "antd";
 import { useState } from "react";
+import { useUserDataContext } from "../../context/UserDataContext";
 
 export const MyProfile = () => {
   const navigate = useNavigate();
+
+  const [userData, setUserData] = useUserDataContext();
 
   const [data, setData] = useState([]);
 
@@ -83,7 +86,30 @@ export const MyProfile = () => {
     },
   ];
 
+  const info = () => {
+    message.info("Successfully logged out");
+  };
+
   const onDelete = (id) => {};
+
+  const logout = async () => {
+    await fetch("api/public/logout", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${userData?.authenticationToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        refreshToken: userData?.refreshToken,
+        username: userData?.username,
+      }),
+    }).then(() => {
+      navigate("/");
+      setUserData(null);
+      localStorage.removeItem("userData");
+      info();
+    });
+  };
 
   return (
     <div className="container">
@@ -113,14 +139,7 @@ export const MyProfile = () => {
               columns={columns}
             />
           </Container>
-          <Button
-            onClick={() => {
-              navigate("/");
-              localStorage.removeItem("token");
-            }}
-          >
-            Log out
-          </Button>
+          <Button onClick={logout}>Log out</Button>
         </Wrapper>
       </div>
     </div>

@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Content } from "./style";
 import { useNavigate } from "react-router-dom";
 import { Button, Input } from "../../components/Generics";
 import { message } from "antd";
 import SignTitle from "../../components/SignTitle";
+import { useUserDataContext } from "../../context/UserDataContext";
 
 export const Signin = () => {
   const navigate = useNavigate();
@@ -12,6 +13,8 @@ export const Signin = () => {
   const info = () => {
     message.info("Successfully logged in ");
   };
+
+  const [userData, setUserData] = useUserDataContext();
 
   const onSubmit = async () => {
     await fetch("/api/public/auth/login", {
@@ -26,7 +29,8 @@ export const Signin = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        localStorage.setItem("token", res.authenticationToken);
+        setUserData(res);
+        localStorage.setItem("userData", JSON.stringify(res));
         navigate("/myprofile");
         info();
       });

@@ -14,7 +14,7 @@ export const Recommended = () => {
   const passwordRef = useRef();
 
   const info = () => {
-    message.info("Successfully logged in ");
+    message.info("Successfully registered");
   };
   const onSubmit = async () => {
     await fetch("/api/public/auth/register", {
