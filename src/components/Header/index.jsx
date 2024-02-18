@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Content, Icon, Prof } from "./style";
+import { Container, Content, Icon, Prof, ProfWrap } from "./style";
 import { navbar } from "./../../utils/navbar";
 import Logo from "../Logo";
 import { Button } from "../Generics";
@@ -38,7 +38,9 @@ const Header = () => {
             </Content.Center>
             <Content.Right>
               {userData?.authenticationToken ? (
-                <Prof onClick={() => navigate("/myprofile")} />
+                <ProfWrap>
+                  <Prof onClick={() => navigate("/myprofile")} />
+                </ProfWrap>
               ) : (
                 <Button onClick={() => navigate("/signin")} type="dark">
                   Sign in

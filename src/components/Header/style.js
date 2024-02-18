@@ -79,9 +79,16 @@ export const Icon = styled(x)`
   }
 `;
 
+export const ProfWrap = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 120px;
+  @media (max-width: 700px) {
+    width: 60px;
+  }
+`;
+
 export const Prof = styled(prof)`
   cursor: pointer;
   fill: #fff;
-  svg {
-  }
 `;
