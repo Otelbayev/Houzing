@@ -16,6 +16,7 @@ const Properties = () => {
       .then((res) => res.json())
       .then((res) => setData(res?.data));
   }, []);
+  console.log(data);
   return (
     <div>
       <Sidebar />

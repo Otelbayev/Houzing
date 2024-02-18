@@ -76,7 +76,7 @@ export const navbar = [
       </React.Suspense>
     ),
     title: "Signup",
-    private: true,
+    private: false,
     hidden: true,
   },
   {
@@ -88,7 +88,7 @@ export const navbar = [
       </React.Suspense>
     ),
     title: "Signup",
-    private: true,
+    private: false,
     hidden: true,
   },
   {
@@ -99,8 +99,8 @@ export const navbar = [
         <Favorite />
       </React.Suspense>
     ),
-    title: "Signup",
+    title: "Favorite",
     private: true,
-    hidden: true,
+    hidden: false,
   },
 ];

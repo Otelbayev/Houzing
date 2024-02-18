@@ -20,6 +20,7 @@ export const HouseCard = ({ data = {}, gap, onClick }) => {
     country,
     description,
     category,
+    favorite,
   } = data;
 
   return (
@@ -61,7 +62,7 @@ export const HouseCard = ({ data = {}, gap, onClick }) => {
           </Details.Item>
           <Details.Item $row="true">
             <Icons.Resize />
-            <Icons.Love />
+            <Icons.Love favorite={favorite?.toString()} />
           </Details.Item>
         </Content>
       </Container>
