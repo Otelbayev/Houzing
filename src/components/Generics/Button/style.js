@@ -50,7 +50,7 @@ const Container = styled.button`
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
   ${getType}
-  :active {
+  &:active {
     opacity: 0.7;
   }
   @media (max-width: 700px) {

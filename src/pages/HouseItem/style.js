@@ -36,7 +36,6 @@ const Section = styled.div`
 `;
 const Content = styled.div`
   display: flex;
-
   align-items: ${({ $flex }) => $flex && "center"};
   justify-content: ${({ $flex }) => !$flex && "center"};
   flex-direction: ${({ $flex }) => !$flex && "column"};
@@ -82,27 +81,33 @@ Icons.Share = styled(share)`
   width: 35px;
   height: 35px;
   margin: 0 10px 0 26px;
+  padding: 5px;
   cursor: pointer;
-  :active {
+  &:active {
     transform: scale(0.9);
   }
 `;
 Icons.Love = styled(love)`
   display: inline-block;
   padding: 2px;
-  background: #f6f8f9;
+  background: ${({ favorite }) => (favorite === "true" ? "red" : "#f6f8f9")};
   border-radius: 10px;
   width: 35px;
   height: 35px;
   margin: 0 10px 0 26px;
+  padding: 5px;
   cursor: pointer;
-  :active {
+  &:active {
     transform: scale(0.9);
+  }
+  path {
+    fill: ${({ favorite }) => (favorite === "true" ? "#fff" : "#696969")};
   }
 `;
 
 Icons.Title = styled.div`
   font-family: "Montserrat";
+  user-select: none;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

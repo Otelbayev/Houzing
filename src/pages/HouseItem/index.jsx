@@ -5,6 +5,7 @@ import { Input, Button } from "../../components/Generics";
 import nouser from "../../assets/img/nouser.jpeg";
 import noimg from "../../assets/img/noimg.jpeg";
 import Recent from "../../components/Recent";
+import { useUserDataContext } from "./../../context/UserDataContext/index";
 
 import {
   Blur,
@@ -22,12 +23,31 @@ import {
 
 export const HouseItem = () => {
   const [data, setData] = useState({});
+  const [userData] = useUserDataContext();
   const params = useParams();
   useEffect(() => {
     fetch(`http://localhost:8080/api/v1/houses/id/${params.id}`)
       .then((res) => res.json())
       .then((res) => setData(res.data));
   }, [params.id]);
+
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const onSave = async () => {
+    await fetch(
+      `http://localhost:8080/api/v1/houses/addFavourite/${data?.id}?favourite=true}`,
+      {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userData?.authenticationToken}`,
+        },
+      }
+    );
+    setIsFavorite(!isFavorite);
+  };
+
   return (
     <div className="container">
       <div className="wrapper">
@@ -69,7 +89,11 @@ export const HouseItem = () => {
               </Content>
               <Content $flex="true">
                 <Icons.Share /> <Icons.Title>Share</Icons.Title>
-                <Icons.Love /> <Icons.Title>Save</Icons.Title>
+                <Icons.Love
+                  onClick={onSave}
+                  favorite={isFavorite?.toString()}
+                />
+                <Icons.Title>Save</Icons.Title>
               </Content>
             </Section>
             <Section>

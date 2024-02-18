@@ -43,8 +43,8 @@ const Container = styled.input`
   outline: none;
   border: 1px solid #e6e9ec;
   padding-left: ${({ $icon }) => ($icon ? "35px" : "20px")};
-  :focus {
-    border: 1px solid #0061df;
+  &:focus {
+    border: 1px solid var(--backgroundPrimary);
   }
   /* ${getType} */
   @media (max-width: 700px) {
