@@ -26,6 +26,7 @@ export const HouseItem = () => {
   const [userData] = useUserDataContext();
   const params = useParams();
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetch(`http://localhost:8080/api/v1/houses/id/${params.id}`)
       .then((res) => res.json())
       .then((res) => setData(res.data));

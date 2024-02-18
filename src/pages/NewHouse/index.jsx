@@ -11,6 +11,9 @@ import TextArea from "antd/lib/input/TextArea";
 export const AddNewHouse = () => {
   const [category, setCategory] = useState([]);
   const [img, setImg] = useState("");
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="container">
       <div className="wrapper">

@@ -4,6 +4,7 @@ import { message } from "antd";
 import { useUserDataContext } from "../../context/UserDataContext";
 import { Container } from "./style";
 import noimg from "../../assets/img/nouser.jpeg";
+import { useEffect } from "react";
 
 export const MyProfile = () => {
   const navigate = useNavigate();
@@ -13,6 +14,10 @@ export const MyProfile = () => {
   const info = () => {
     message.info("Successfully logged out");
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const logout = async () => {
     await fetch("api/public/logout", {

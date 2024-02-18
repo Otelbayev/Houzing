@@ -21,7 +21,6 @@ const Container = styled.div`
   transition: 0.3s;
   &:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    transform: scale(1.01);
   }
   &:active {
     transform: scale(1);
@@ -61,19 +60,37 @@ Icons.Bed = styled(bed)``;
 Icons.Bath = styled(bath)``;
 Icons.Garage = styled(garage)``;
 Icons.Ruler = styled(ruler)``;
-Icons.Resize = styled(resize)``;
+Icons.Resize = styled(resize)`
+  transition: 0.3s;
+  width: 30px;
+  height: 30px;
+  padding: 8px;
+  border-radius: 10px;
+  background: #f6f8f9;
+  &:hover {
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+`;
 Icons.Love = styled(love)`
-  width: 27px;
-  height: 27px;
-  padding: 6px;
+  transition: 0.3s;
+  width: 30px;
+  height: 30px;
+  padding: 8px;
+  border-radius: 10px;
+  background: #f6f8f9;
   background: ${({ favorite }) => (favorite ? "red" : "#f6f8f9")};
-  border-radius: 50%;
   margin-left: 20px;
   cursor: pointer;
   & path {
     fill: ${({ favorite }) => favorite && "white"};
   }
-  :active {
+  &:hover {
+    transform: scale(1.1);
+  }
+  &:active {
     transform: scale(0.9);
   }
 `;

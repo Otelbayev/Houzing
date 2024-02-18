@@ -57,7 +57,7 @@ export const Recommended = () => {
               <HouseCard
                 key={index}
                 gap={10}
-                onClick={() => navigate(`/properties/${value.id}`)}
+                onResizeClick={() => navigate(`/properties/${value.id}`)}
                 data={value}
               />
             );

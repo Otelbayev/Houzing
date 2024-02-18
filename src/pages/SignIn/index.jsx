@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Content } from "./style";
 import { useNavigate } from "react-router-dom";
 import { Button, Input } from "../../components/Generics";
@@ -13,6 +13,10 @@ export const Signin = () => {
   const info = () => {
     message.info("Successfully logged in ");
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const [userData, setUserData] = useUserDataContext();
 

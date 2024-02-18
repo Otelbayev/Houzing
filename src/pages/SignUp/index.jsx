@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, } from "react";
 import { Content } from "../SignIn/style";
 import { useNavigate } from "react-router-dom";
 import { Button, Input } from "../../components/Generics";
@@ -12,7 +12,9 @@ export const Recommended = () => {
   const firstnameRef = useRef();
   const lastnameRef = useRef();
   const passwordRef = useRef();
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const info = () => {
     message.info("Successfully registered");
   };

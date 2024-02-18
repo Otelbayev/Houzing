@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "../../components/Sidebar";
 import Carousel from "../../components/Carousel";
 import Recommended from "../../components/Recomended";
@@ -8,6 +8,9 @@ import Recent from "../../components/Recent";
 import Category from "../../components/Category";
 
 const Home = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <Carousel>

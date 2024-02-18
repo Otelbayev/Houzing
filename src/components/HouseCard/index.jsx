@@ -9,7 +9,7 @@ import {
 } from "./style";
 import noimg from "../../assets/img/noimg.jpeg";
 
-export const HouseCard = ({ data = {}, gap, onClick }) => {
+export const HouseCard = ({ data = {}, gap, onResizeClick, onLoveClick }) => {
   const {
     attachments,
     salePrice,
@@ -24,7 +24,7 @@ export const HouseCard = ({ data = {}, gap, onClick }) => {
   } = data;
 
   return (
-    <Wrap $gap={gap} onClick={onClick}>
+    <Wrap $gap={gap}>
       <Container>
         <Img src={(attachments && attachments[0]?.imgPath) || noimg} />
         <Content>
@@ -61,8 +61,8 @@ export const HouseCard = ({ data = {}, gap, onClick }) => {
             <div className="subTitle">${price || 0}/mo</div>
           </Details.Item>
           <Details.Item $row="true">
-            <Icons.Resize />
-            <Icons.Love favorite={favorite?.toString()} />
+            <Icons.Resize onClick={onResizeClick} />
+            <Icons.Love onClick={onLoveClick} favorite={favorite?.toString()} />
           </Details.Item>
         </Content>
       </Container>

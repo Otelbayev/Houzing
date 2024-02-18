@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import HouseCard from "../../components/HouseCard";
 import { Container } from "./style";
 import { useUserDataContext } from "./../../context/UserDataContext/index";
+import { useNavigate } from "react-router-dom";
 
 const Favorite = () => {
   const [data, setData] = useState([]);
   const [userData] = useUserDataContext();
+  const naviagte = useNavigate();
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetch("api/v1/houses/getAll/favouriteList", {
       headers: {
         Authorization: `Bearer ${userData?.authenticationToken}`,
@@ -28,7 +31,13 @@ const Favorite = () => {
           {data?.length ? (
             data.map((value) => {
               console.log(value);
-              return <HouseCard key={value.id} data={value} />;
+              return (
+                <HouseCard
+                  key={value.id}
+                  onResizeClick={() => naviagte(`/properties/${value.id}`)}
+                  data={value}
+                />
+              );
             })
           ) : (
             <h1 style={{ textAlign: "center" }}>No Data Found</h1>

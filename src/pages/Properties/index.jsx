@@ -33,7 +33,7 @@ const Properties = () => {
                 <HouseCard
                   key={value.id}
                   data={value}
-                  onClick={() => navigate(`${value.id}`)}
+                  onResizeClick={() => navigate(`${value.id}`)}
                 />
               ))}
           </Container>
