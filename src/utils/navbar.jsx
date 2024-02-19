@@ -177,4 +177,24 @@ export const navbar = [
     private: true,
     hidden: false,
   },
+  {
+    id: 10,
+    path: "/myprofile/edithouse/:id",
+    element: (
+      <React.Suspense
+        fallback={
+          <React.Fragment>
+            <div style={spinStyle}>
+              <img src={loading} alt={"anim"} />
+            </div>
+          </React.Fragment>
+        }
+      >
+        <AddNewHouse />
+      </React.Suspense>
+    ),
+    title: "Signup",
+    private: false,
+    hidden: true,
+  },
 ];

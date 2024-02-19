@@ -52,16 +52,17 @@ export const Recommended = () => {
           </div>
         </Content>
         <Slider {...settings}>
-          {data.map((value, index) => {
-            return (
-              <HouseCard
-                key={index}
-                gap={10}
-                onResizeClick={() => navigate(`/properties/${value.id}`)}
-                data={value}
-              />
-            );
-          })}
+          {data?.length &&
+            data.map((value, index) => {
+              return (
+                <HouseCard
+                  key={index}
+                  gap={10}
+                  onResizeClick={() => navigate(`/properties/${value.id}`)}
+                  data={value}
+                />
+              );
+            })}
         </Slider>
       </div>
     </Container>

@@ -11,16 +11,18 @@ const Properties = () => {
   const [data, setData] = useState(mockData);
   const navigate = useNavigate();
   const [userData] = useUserDataContext();
+  const [render, setRender] = useState(false);
   useEffect(() => {
     fetch("api/v1/houses/list")
       .then((res) => res.json())
       .then((res) => setData(res?.data));
-  }, []);
-  console.log(data);
+  }, [render]);
   return (
     <div>
       <Sidebar />
-      {userData?.authenticationToken && <MyProperties />}
+      {userData?.authenticationToken && (
+        <MyProperties rendered={[render, setRender]} />
+      )}
       <div className="container">
         <div className="wrapper">
           <div className="title">Properties</div>
@@ -28,7 +30,7 @@ const Properties = () => {
             Nulla quis curabitur velit volutpat auctor bibendum consectetur sit.
           </div>
           <Container>
-            {data.length !== 0 &&
+            {data?.length &&
               data.map((value) => (
                 <HouseCard
                   key={value.id}

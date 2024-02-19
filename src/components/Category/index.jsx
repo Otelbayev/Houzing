@@ -52,9 +52,10 @@ export const Category = () => {
           </div>
         </Content>
         <Slider {...settings}>
-          {data.map((value) => {
-            return <CategoryCard key={value.id} data={value} />;
-          })}
+          {data?.length &&
+            data.map((value) => {
+              return <CategoryCard key={value.id} data={value} />;
+            })}
         </Slider>
       </div>
     </Container>

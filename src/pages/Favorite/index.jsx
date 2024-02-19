@@ -30,7 +30,6 @@ const Favorite = () => {
         <Container>
           {data?.length ? (
             data.map((value) => {
-              console.log(value);
               return (
                 <HouseCard
                   key={value.id}

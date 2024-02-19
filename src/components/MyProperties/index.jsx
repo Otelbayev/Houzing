@@ -1,95 +1,37 @@
-import React, { useState } from "react";
-import { AntTable, Container, User, Wrapper } from "./style";
+import React, { memo, useEffect, useState } from "react";
+import { Container, Icons, Table, Td, Th, User, Wrapper } from "./style";
 import { Button } from "../Generics";
 import { useUserDataContext } from "../../context/UserDataContext";
-import { message } from "antd";
 import { useNavigate } from "react-router-dom";
 
-const MyProperties = () => {
+const MyProperties = ({ rendered }) => {
   const navigate = useNavigate();
+
+  const [render, setRender] = rendered;
 
   const [userData, setUserData] = useUserDataContext();
 
   const [data, setData] = useState([]);
 
-  const columns = [
-    {
-      title: "Listing Title",
-      key: "name",
-      render: (data) => {
-        return (
-          <User>
-            <User.Img
-              src={
-                (data?.attachments && data?.attachments[0]?.imgPath) || noimg
-              }
-            />
-            <User flex>
-              <div className="subTitle">
-                {data.country}, {data.address}
-              </div>
-              <div className="info">
-                {data.city} {data.region}
-              </div>
-              <del>
-                <div className="info">$ {data.price}</div>
-              </del>
-            </User>
-            <div style={{ marginLeft: "auto" }}>
-              <Button>For Sale</Button>
-            </div>
-          </User>
-        );
+  useEffect(() => {
+    fetch("http://localhost:8080/api/v1/houses/me", {
+      headers: {
+        Authorization: `Bearer ${userData?.authenticationToken}`,
       },
-    },
-    {
-      title: "Year Build",
-      render: (data) => <span> {data.houseDetails.yearBuilt}</span>,
-      key: "houseDetails.yearBuilt",
-      width: 150,
-    },
-    {
-      title: "Email",
-      render: (data) => <span> {data.user.email}</span>,
-      key: "email",
-    },
-    {
-      title: "Price",
-      key: "price",
-      render: (data) => <span> $ {data.price}</span>,
+    })
+      .then((res) => res.json())
+      .then((res) => setData(res.data));
+  }, [data]);
 
-      width: 150,
-    },
-    {
-      title: "Action",
-      key: "email",
-      width: 100,
-      render: (data) => {
-        return (
-          <User>
-            <Icons.Edit
-              onClick={(event) => {
-                event.stopPropagation();
-                navigate(`/myprofile/edithouse/${data?.id}`);
-              }}
-            />
-            <Icons.Delete
-              onClick={(event) => {
-                event.stopPropagation();
-                onDelete(data?.id);
-              }}
-            />
-          </User>
-        );
+  const onDelete = async (id) => {
+    await fetch(`http://localhost:8080/api/v1/houses/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${userData.authenticationToken}`,
       },
-    },
-  ];
-
-  const info = () => {
-    message.info("Successfully logged out");
+    });
+    setRender(id);
   };
-
-  const onDelete = (id) => {};
 
   return (
     <div className="container">
@@ -107,17 +49,61 @@ const MyProperties = () => {
             </div>
           </User>
           <Container>
-            <AntTable
-              onRow={(record, rowIndex) => {
-                return {
-                  onClick: () => {
-                    navigate(`/properties/${record?.id}`);
-                  }, // click row
-                };
-              }}
-              dataSource={data?.data}
-              columns={columns}
-            />
+            <Table>
+              <thead>
+                <tr>
+                  <Th>Listing Title</Th>
+                  <Th>Date Published</Th>
+                  <Th>Status</Th>
+                  <Th>View</Th>
+                  <Th>Actions</Th>
+                </tr>
+              </thead>
+              <tbody>
+                {data?.length &&
+                  data.map((item, index) => (
+                    <tr key={index}>
+                      <Td>
+                        <div className="table-box">
+                          <div className="table-box__img">
+                            <img src={item?.attachments[0]?.imgPath} alt="" />
+                          </div>
+                          <div className="table-box__content">
+                            <div>
+                              <div className="table-box__content__title">
+                                {item?.address}
+                              </div>
+                              <div className="table-box__content__subtitle">
+                                {item?.country}
+                                {item?.city}
+                              </div>
+                            </div>
+                            <div>
+                              <del className="table-box__content__sale-price">
+                                ${item?.salePrice}/mo
+                              </del>
+                              <div className="table-box__content__price">
+                                ${item?.price}/mo
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </Td>
+                      <Td>16.04.2004</Td>
+                      <Td>Pending</Td>
+                      <Td>{item?.zipCode}</Td>
+                      <Td>
+                        <Icons.Edit
+                          onClick={() =>
+                            navigate(`/myprofile/edithouse/${item?.id}`)
+                          }
+                        />
+                        <Icons.Delete onClick={() => onDelete(item.id)} />
+                      </Td>
+                    </tr>
+                  ))}
+              </tbody>
+            </Table>
           </Container>
         </Wrapper>
       </div>
@@ -125,4 +111,4 @@ const MyProperties = () => {
   );
 };
 
-export default MyProperties;
+export default memo(MyProperties);
