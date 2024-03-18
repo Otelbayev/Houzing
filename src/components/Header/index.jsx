@@ -22,18 +22,9 @@ const Header = () => {
               <Logo />
             </Content.Left>
             <Content.Center $menu={menu.toString()}>
-              {navbar.map(({ id, path, title, hidden, private: isPrivate }) =>
-                !hidden && !isPrivate ? (
-                  <Content.Link
-                    onClick={() => setMenu(!menu)}
-                    key={id}
-                    to={path}
-                  >
-                    {title}
-                  </Content.Link>
-                ) : (
-                  isPrivate &&
-                  userData?.authenticationToken && (
+              {navbar.map(
+                ({ id, path, title, hidden, private: isPrivate }) =>
+                  !hidden && (
                     <Content.Link
                       onClick={() => setMenu(!menu)}
                       key={id}
@@ -42,7 +33,6 @@ const Header = () => {
                       {title}
                     </Content.Link>
                   )
-                )
               )}
               <Icon onClick={() => setMenu(!menu)} />
             </Content.Center>

@@ -134,7 +134,7 @@ export const navbar = [
       </React.Suspense>
     ),
     title: "Signup",
-    private: false,
+    private: true,
     hidden: true,
   },
   {
@@ -154,7 +154,7 @@ export const navbar = [
       </React.Suspense>
     ),
     title: "Signup",
-    private: false,
+    private: true,
     hidden: true,
   },
   {
@@ -194,7 +194,7 @@ export const navbar = [
       </React.Suspense>
     ),
     title: "Signup",
-    private: false,
+    private: true,
     hidden: true,
   },
 ];

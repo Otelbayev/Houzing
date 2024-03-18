@@ -33,10 +33,13 @@ export const Signin = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        setUserData(res);
-        localStorage.setItem("userData", JSON.stringify(res));
-        navigate("/myprofile");
-        info();
+        console.log(res);
+        if (res.authenticationToken) {
+          setUserData(res);
+          localStorage.setItem("userData", JSON.stringify(res));
+          navigate("/myprofile");
+          info();
+        }
       });
   };
 

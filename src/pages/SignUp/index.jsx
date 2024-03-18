@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, } from "react";
+import React, { useEffect, useRef } from "react";
 import { Content } from "../SignIn/style";
 import { useNavigate } from "react-router-dom";
 import { Button, Input } from "../../components/Generics";
@@ -33,9 +33,11 @@ export const Recommended = () => {
       }),
     })
       .then((res) => res.json())
-      .then(() => {
-        info();
-        navigate("/signin");
+      .then((res) => {
+        if (res.success) {
+          info();
+          navigate("/signin");
+        }
       });
   };
 
